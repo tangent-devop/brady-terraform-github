@@ -9,9 +9,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
 
-- task: NuGetToolInstaller@1
+
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+       command: 'build'
+
+    - task: NuGetToolInstaller@1
