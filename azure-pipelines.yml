@@ -57,7 +57,7 @@ stages:
         - task: AzureResourceManagerTemplateDeployment@3
           inputs:
               deploymentScope: 'Resource Group'
-              azureResourceManagerConnection: 'DemoSubscription(e3ee360d-47a8-4d33-8764-fd8d92501c05)-tangentsolution'
+              azureResourceManagerConnection: 'DemoSubscription(e3ee360d-47a8-4d33-8764-fd8d92501c05)'
               subscriptionId: 'e3ee360d-47a8-4d33-8764-fd8d92501c05'
               action: 'Create Or Update Resource Group'
               resourceGroupName: 'brd-weather-rg'
