@@ -26,6 +26,14 @@ stages:
         inputs:
          restoreSolution: '$(solution)'
 
+      - task: CopyFiles@2
+        displayName: "package infrastructure as code"
+        inputs:
+             SourceFolder: '$(Build.SourcesDirectory)/arm'
+             Contents: "*.json"
+             TargetFolder: "$(build.artifactstagingdirectory)/drop"
+    
+
       - task: VSBuild@1
         inputs:
          solution: '$(solution)'          
@@ -43,12 +51,6 @@ stages:
            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
            ArtifactName: 'drop'
            publishLocation: 'Container'  
-      - task: CopyFiles@2
-        displayName: "package infrastructure as code"
-        inputs:
-             SourceFolder: '$(Build.SourcesDirectory)/arm'
-             Contents: "*.json"
-             TargetFolder: "$(build.artifactstagingdirectory)/deploy"
     
                   
   - stage:  Deploy
