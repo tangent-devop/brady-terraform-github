@@ -7,7 +7,7 @@ trigger:
 - bradyinfrastructure-_setup
 
 pool:
-  vmImage: 'windows-latest'
+  name:Default
 
 variables:
     solution: '**/*.sln'
