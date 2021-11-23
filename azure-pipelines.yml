@@ -6,6 +6,8 @@
 trigger:
 - main
 - features/*
+pool:
+  name: Default
 
 variables:
   solution: '**/*.sln'
