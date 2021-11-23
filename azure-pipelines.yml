@@ -60,7 +60,7 @@ stages:
               azureResourceManagerConnection: 'Brady Deployment'
               subscriptionId: 'e3ee360d-47a8-4d33-8764-fd8d92501c05'
               action: 'Create Or Update Resource Group'
-              resourceGroupName: 'brady-weather-rg'
+              resourceGroupName: 'brady-rg01'
               location: 'UK West'
               templateLocation: 'Linked artifact'
               csmFile: '$(System.ArtifactsDirectory)/drop/brady-weather/webappdeployment.json'
