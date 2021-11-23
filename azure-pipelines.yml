@@ -71,7 +71,7 @@ stages:
               location: 'UK West'
               templateLocation: 'Linked artifact'
               csmFile: '$(System.ArtifactsDirectory)/deploy/webappdeployment.json'
-              csmParametersFile: '$(System.ArtifactsDirectory)/deploy/webappdeploymentparameters.json'
+              csmParametersFile: '$(System.ArtifactsDirectory)/deploy/webappdeployment.parameters.json'
               deploymentMode: 'Incremental'
           
          
