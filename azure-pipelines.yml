@@ -28,7 +28,7 @@ stages:
 
       - task: VSBuild@1
         inputs:
-         solution: '$(solution)'
+         solution: '$(solution)'          
          msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
          platform: '$(buildPlatform)'
          configuration: '$(buildConfiguration)'
@@ -43,6 +43,13 @@ stages:
            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
            ArtifactName: 'drop'
            publishLocation: 'Container'  
+      - task: CopyFiles@2
+        displayName: "package infrastructure as code"
+        inputs:
+             SourceFolder: '$(Build.SourcesDirectory)/devops-interview/arm'
+             Contents: "*.json"
+             TargetFolder: "$(build.artifactstagingdirectory)/deploy"
+    
                   
   - stage:  Deploy
     jobs:
@@ -63,8 +70,8 @@ stages:
               resourceGroupName: 'brady-rg01'
               location: 'UK West'
               templateLocation: 'Linked artifact'
-              csmFile: '$(System.ArtifactsDirectory)/drop/brady-weather/webappdeployment.json'
-              csmParametersFile: 'webappdeploymentparameters.json'
+              csmFile: '$(System.ArtifactsDirectory)/deploy/webappdeployment.json'
+              csmParametersFile: '$(System.ArtifactsDirectory)/deploy/webappdeploymentparameters.json'
               deploymentMode: 'Incremental'
           
          
