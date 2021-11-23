@@ -31,9 +31,8 @@ stages:
         inputs:
              SourceFolder: '$(Build.SourcesDirectory)/arm'
              Contents: "*.json"
-             TargetFolder: "$(build.artifactstagingdirectory)/drop"
+             TargetFolder: "$(build.artifactstagingdirectory)/deploy"
     
-
       - task: VSBuild@1
         inputs:
          solution: '$(solution)'          
