@@ -7,7 +7,7 @@ trigger:
 - bradyinfrastructure-_setup
 
 pool:
-    name: 'Azure Pipelines'
+    name: 'Tangent Pool1'
 
 variables:
     solution: '**/*.sln'
