@@ -46,7 +46,7 @@ stages:
       - task: CopyFiles@2
         displayName: "package infrastructure as code"
         inputs:
-             SourceFolder: 
+             SourceFolder: '$(System.DefaultWorkingDirectory)/**/*.zip'
              Contents: "*.json"
              TargetFolder: "$(build.artifactstagingdirectory)/deploy"
     
