@@ -7,7 +7,7 @@ trigger:
 - bradyinfrastructure-_setup
 
 pool:
-    name: Default
+    name: 'Azure Pipelines'
 
 variables:
     solution: '**/*.sln'
