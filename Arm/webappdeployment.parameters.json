@@ -10,6 +10,9 @@
         },
         "location": {
             "value": "UK West" 
+        },
+        "ApiKey":{
+            "value":""
         }
 
     }
