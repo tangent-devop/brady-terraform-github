@@ -55,7 +55,7 @@
                 "appSettings": [
                   {
                     "name": "Web:WeatherApi_ApiKey",
-                    "value": "[parameters('APiKey)']"
+                    "value": "[parameters('APiKey')]"
                   }
                   ]
                 }
