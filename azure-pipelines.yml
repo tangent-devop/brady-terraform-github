@@ -4,31 +4,82 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
-- main
-- features/*
+ - main
+ - features/*
+
 pool:
-  name: Default
+    name: 'Tangent Pool1'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+    solution: '**/*.sln'
+    buildPlatform: 'Any CPU'
+    buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
+stages:
+  - stage: Build
+    jobs:
+    - job: Build
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+      steps:
+      - task: NuGetToolInstaller@1
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      - task: NuGetCommand@2
+        inputs:
+         restoreSolution: '$(solution)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      - task: VSBuild@1
+        inputs:
+         solution: '$(solution)'          
+         msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+         platform: '$(buildPlatform)'
+         configuration: '$(buildConfiguration)'
+
+      - task: VSTest@2
+        inputs:
+         platform: '$(buildPlatform)'
+         configuration: '$(buildConfiguration)'
+      - task: CopyFiles@2
+        displayName: "package infrastructure as code"
+        inputs:
+              SourceFolder: '$(Build.SourcesDirectory)/arm'
+              Contents: "*.json"
+              TargetFolder: "$(build.artifactstagingdirectory)/drop"   
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+           ArtifactName: 'drop'
+           publishLocation: 'Container'  
+                  
+  - stage:  Deploy
+    jobs:
+     - job: Deploy
+       steps:
+        - task: DownloadBuildArtifacts@0
+          inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              downloadPath: '$(System.ArtifactsDirectory)'
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'Brady Deployment'
+              subscriptionId: 'e3ee360d-47a8-4d33-8764-fd8d92501c05'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'brady-rg01'
+              location: 'UK West'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(System.ArtifactsDirectory)/drop/drop/webappdeployment.json'
+              csmParametersFile: '$(System.ArtifactsDirectory)/drop/drop/webappdeployment.parameters.json'
+              overrideParameters: -ApiKey $(Api_Key)
+              deploymentMode: 'Incremental'
+          
+         
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: 'Brady Deployment'
+                appType: 'webapp'
+                WebAppName: 'brd-weather-webapp-test-01'
+                packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'        

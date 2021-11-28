@@ -15,6 +15,9 @@
   "webappname": {
       "type": "string"
 
+  },
+  "ApiKey":{
+     "type": "securestring"
   }
   
 
@@ -37,8 +40,7 @@
             "tier": "free",
             "name": "F1"
         }
-      
- 
+       
 
     },
     {
@@ -48,8 +50,18 @@
         "name": "[parameters('webappname')]",
         "properties": {
             "httpsOnly": false,
-            "serverFarmId": "[parameters('appserviceplan')]"
-        },
+            "serverFarmId": "[parameters('appserviceplan')]",
+            "siteConfig": {
+                "appSettings": [
+                  {
+                    "name": "Web__WeatherApi__ApiKey",
+                    "value": "[parameters('APiKey')]"
+                  }
+                  ]
+                }
+            },
+                
+        
         "dependsOn": ["[resourceId('Microsoft.Web/serverfarms', parameters('appserviceplan'))]"]
 
 
