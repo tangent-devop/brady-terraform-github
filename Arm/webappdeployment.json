@@ -54,7 +54,7 @@
             "siteConfig": {
                 "appSettings": [
                   {
-                    "name": "WeatherApi__ApiKey",
+                    "name": "Web__WeatherApi__ApiKey",
                     "value": "[parameters('APiKey')]"
                   }
                   ]
