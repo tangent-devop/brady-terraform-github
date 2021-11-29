@@ -4,3 +4,4 @@ The CI will trigger the build when any changes are check in and is committed int
 Build Stage and Deploy Stage created within the same pipeline
 Api key should be configured as a secure string as a varaible in the Azure Pipeline
 Build & Deployment pipelines can be found in Pipelines folder of the solution.
+(Link to Access Website) https://brd-weather-webapp-test-01.azurewebsites.net 
