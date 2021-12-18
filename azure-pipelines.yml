@@ -40,7 +40,7 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Terraform'
     Contents: '*.*'
-    TargetFolder: '$(buildartifactstagingdirectory)/Terraform'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/Terraform'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
