@@ -38,8 +38,8 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'Terraform'
-    Contents: '**'
+    SourceFolder: '$(Build.SourcesDirectory)/Terraform'
+    Contents: '*.*'
     TargetFolder: '$(buildartifactstagingdirectory)/Terraform'
 - task: PublishBuildArtifacts@1
   inputs:
