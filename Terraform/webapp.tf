@@ -8,6 +8,11 @@ terraform {
     
   }
 }
+provider "azurerm" {
+  version= "=2.0.0"
+  feature {}
+}
+
 resource "azurerm_resource_group" "dev" {
   name     = "Brady-Terraform-RG"
   location = "West Europe"
