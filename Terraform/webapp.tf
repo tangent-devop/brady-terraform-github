@@ -14,7 +14,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "dev" {
-  name     = "Brady-Terraform-RG"
+  name     = "PULTerraform"
   location = "West Europe"
 }
 
