@@ -14,8 +14,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "dev" {
-  name     = "PULTerraform"
-  location = "West US"
+  name     = "TerraformBdy"
+  location = "UK South"
 }
 
 resource "azurerm_app_service_plan" "dev" {
