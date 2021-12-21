@@ -1,5 +1,6 @@
 terraform {
   required_version = ">= 0.11"
+  features {}
   backend "azurerm" {
     storage_account_name = "terraformstorageaccount"
     container_name       = "terraform"
@@ -8,7 +9,6 @@ terraform {
     
   }
 }
-
 resource "azurerm_resource_group" "test" {
   name     = "TerraformBdy"
   location = "UK South"
