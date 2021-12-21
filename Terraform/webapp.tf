@@ -13,24 +13,24 @@ provider "azurerm" {
   feature {}
 }
 
-resource "azurerm_resource_group" "dev" {
+resource "azurerm_resource_group" "test" {
   name     = "TerraformBdy"
   location = "UK South"
 }
 
-resource "azurerm_app_service_plan" "dev" {
+resource "azurerm_app_service_plan" "test" {
   name                = "__appserviceplan__"
-  location            =    azurerm_resource_group.dev.location
-  resource_group_name =    azurerm_resource_group.dev.name
+  location            =    azurerm_resource_group.test.location
+  resource_group_name =    azurerm_resource_group.test.name
 
   sku {
     tier = "Free"
     size = "F1"
   }
 }
-resource "azurerm_app_service" "dev" {
+resource "azurerm_app_service" "test" {
   name                = "__appservicename__"
-  location            =    azurerm_resource_group.dev.location
-  resource_group_name =    azurerm_resource_group.dev.name
-  app_service_plan_id =    azurerm_app_service_plan.dev.id
+  location            =    azurerm_resource_group.test.location
+  resource_group_name =    azurerm_resource_group.test.name
+  app_service_plan_id =    azurerm_app_service_plan.test.id
 }
