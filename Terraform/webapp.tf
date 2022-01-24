@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "test" {
 }
 
 resource "azurerm_app_service_plan" "test" {
-  name                =    "bradyterraformplan"
+  name                =    "_appserviceplan_"
   location            =    azurerm_resource_group.test.location
   resource_group_name =    azurerm_resource_group.test.name
 
@@ -28,10 +28,16 @@ resource "azurerm_app_service_plan" "test" {
   }
 }
 resource "azurerm_app_service" "test" {
-  name                =    "bradyterraformwebacc"
+  name                =    "_appservicename_"
   location            =    azurerm_resource_group.test.location
   resource_group_name =    azurerm_resource_group.test.name
   app_service_plan_id =    azurerm_app_service_plan.test.id
+}
+app_settings = {
+    "Web__WeatherApi__ApiKey" = "_ApiKey_"
+
+  }
+
 
 
 }
