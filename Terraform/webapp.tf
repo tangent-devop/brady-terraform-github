@@ -1,7 +1,7 @@
 terraform {
   required_version = ">= 0.11"
   backend "azurerm" {
-    storage_account_name = "terraformstorageaccount"
+    storage_account_name = "__terraformstorageaccount__"
     container_name       = "terraform"
     key                  = "terraform.tfstate"  
     accesskey            = "__storagekey__"
@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "test" {
 }
 
 resource "azurerm_app_service_plan" "test" {
-  name                =    "_appserviceplan_"
+  name                =    "__appserviceplan__"
   location            =    azurerm_resource_group.test.location
   resource_group_name =    azurerm_resource_group.test.name
 
@@ -28,7 +28,7 @@ resource "azurerm_app_service_plan" "test" {
   }
 }
 resource "azurerm_app_service" "test" {
-  name                =    "_appservicename_"
+  name                =    "__appservicename__"
   location            =    azurerm_resource_group.test.location
   resource_group_name =    azurerm_resource_group.test.name
   app_service_plan_id =    azurerm_app_service_plan.test.id
