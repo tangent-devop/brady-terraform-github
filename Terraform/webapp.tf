@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "test" {
   location = "UK South"
 }
 
-resource "azurerm_app_service_plan" "test" {
+resource "azurerm_app_service_plan" "asp-test" {
   name                = "__appserviceplan__"
   location            = azurerm_resource_group.test.location
   resource_group_name = azurerm_resource_group.test.name
@@ -27,11 +27,11 @@ resource "azurerm_app_service_plan" "test" {
     size = "F1"
   }
 }
-resource "azurerm_app_service" "test" {
+resource "azurerm_app_service" "as-test" {
   name                = "__webappname__"
   location            = azurerm_resource_group.test.location
   resource_group_name = azurerm_resource_group.test.name
-  app_service_plan_id = azurerm_app_service_plan.test.id
+  app_service_plan_id = azurerm_app_service_plan.asp-test.id
 }
 
 
