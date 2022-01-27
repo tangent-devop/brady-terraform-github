@@ -28,7 +28,7 @@ resource "azurerm_app_service_plan" "asp-test" {
   }
 }
 resource "azurerm_app_service" "as-test" {
-  name                = "__webappname__"
+  name                = "__webappname1234__"
   location            = azurerm_resource_group.test.location
   resource_group_name = azurerm_resource_group.test.name
   app_service_plan_id = azurerm_app_service_plan.asp-test.id
