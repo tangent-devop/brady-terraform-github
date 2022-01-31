@@ -1,7 +1,7 @@
 terraform {
   required_version = ">= 0.11"
   backend "azurerm" {
-    storage_account_name = "__terraformstorageaccount__"
+    storage_account_name = "__weatherdevopsstorageaccount__"
     container_name       = "terraform"
     key                  = "terraform.tfstate"  
     accesskey            = "__storagekey__"
@@ -33,6 +33,10 @@ resource "azurerm_app_service" "dev" {
   resource_group_name = "${azurerm_resource_group.dev.name}"
   app_service_plan_id = "${azurerm_app_service_plan.dev.id}"
 }
+
+app_settings = {
+    "Web__WeatherApi__ApiKey" = "${var.api-key}"
+  }
 
 
 
