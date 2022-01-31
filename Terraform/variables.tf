@@ -14,3 +14,6 @@ variable "app-service-name" {
   default     = "brady-tf-webapp"
   description = "The name of the Web App"
 }
+variable "api-key" {
+    description = "To access Weather Api"
+}
