@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "dev" {
 }
 
 resource "azurerm_app_service_plan" "dev" {
-  name                = "__appserviceplan__"
+  name                = "${var.app-service-plan}"
   location            = "${azurerm_resource_group.dev.location}"
   resource_group_name = "${azurerm_resource_group.dev.name}"
 
