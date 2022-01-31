@@ -1,4 +1,4 @@
-variable "azurerm_app_service_plan" {
+variable "app-service-plan" {
   default     = "brady-tf-app-srv-plan"
   description = "The name of the Web App Plan"
 }
