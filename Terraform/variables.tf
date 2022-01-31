@@ -3,6 +3,6 @@ variable "azurerm_app_service_plan" {
   description = "The name of the Web App Plan"
 }
 variable "azurerm_app_service" {
-  default     = "bradyterraformwebacc"
+  default     = "bradyterraformwebapp"
   description = "The name of the Web App"
 }
