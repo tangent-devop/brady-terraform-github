@@ -13,8 +13,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "dev" {
-  name     = "TerraformBdy"
-  location = "West Europe"
+  name     = "${var.resource-group-name}"
+  location = "${var.location}"
 }
 
 resource "azurerm_app_service_plan" "dev" {
