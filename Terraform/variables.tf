@@ -15,6 +15,6 @@ variable "app-service-name" {
   description = "The name of the Web App"
 }
 variable "api-key" {
-    default       = "api-key"
+  default     = "api-key"
     description = "To access Weather Api"
 }
