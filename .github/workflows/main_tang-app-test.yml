@@ -33,7 +33,7 @@ jobs:
         with:
          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.json'
         env:
-         App.Web.WeatherApi.ApiKey: ${{ secrets.Web__WeatherApi__ApiKey }}      
+          Web.WeatherApi.ApiKey: ${{ secrets.Web__WeatherApi__ApiKey }}      
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
