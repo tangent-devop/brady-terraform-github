@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "dev" {
-  name     = "rg-github-tf-brd"
-  location = "UK west"
+  name     = "brady-tf-github-rg"
+  location = "UK south"
 }
 
 resource "azurerm_app_service_plan" "dev" {
