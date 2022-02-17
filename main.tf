@@ -6,7 +6,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "brd-github-tf-rg"  
     storage_account_name = "bradygithubstracc"
-    container_name       = "tfbradytatefile"
+    container_name       = "bradygithubstatefile"
     key                  = "terraform.tfstate"  
     
   }
